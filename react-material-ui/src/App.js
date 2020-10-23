@@ -34,7 +34,7 @@ const App = (props) => {
 
   useEffect(() => {
     //props.fetchData()
-    axios.get("http://jsonplaceholder.typicode.com/photos?_start=0&_limit=5").then((response) => {
+    axios.get("http://jsonplaceholder.typicode.com/photos").then((response) => {
       if (dset.length !== response.length) {
         console.log("found changes")
         dset = response.data;
@@ -50,14 +50,15 @@ const App = (props) => {
   }, [])
 
   return (
-
     <div style={{ height: 400, width: '100%' }}>
+      <h1> React redux table </h1>
       <DataGrid maxColumns={4} columns={[
         { field: 'id', width: 90 },
-       { field: 'title', width: 230 }, 
-       { field: 'url', width: 220 }, 
-       { field: 'thumbnailUrl', width: 230 }]}
-        rows={dset} resizable={true} />
+        { field: 'title', width: 230 },
+        { field: 'url', width: 220 },
+        { field: 'thumbnailUrl', width: 230 }]}
+        rows={dset} resizable={true}
+        pageSize={5} />
     </div>
   );
 }
